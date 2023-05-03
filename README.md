@@ -1,12 +1,12 @@
-# Challenge 06 Cars API
+# Challenge 05 Cars API
 
-- Repository ini ditujukan sebagai boilerplate dalam membuat sebuah HTTP Server menggunakan Express.js 
-<br />
+- Repository ini ditujukan sebagai boilerplate dalam membuat sebuah HTTP Server menggunakan Express.js
+  <br />
 - Repository ini menggunakan Service Repository Pattern, yang artinya di dalam repository ini terdapat modul model, controller, service, dan repository.
 
 ## Getting Started
 
-Perintah untuk menginstall dependencies yang digunakan 
+Perintah untuk menginstall dependencies yang digunakan
 
 ```sh
 npm i atau npm install
@@ -39,12 +39,12 @@ npm run develop
 Data super admin untuk login
 
 ```json
-"email": "adminsuper@email.com",
+"email": "superadmin@gmail.com",
 "encryptedPassword": "adminsuper"
 ```
 
 API Document
-```js
-http://localhost:8046/api-docs
-```
 
+```js
+http://localhost:8081/api-docs
+```
