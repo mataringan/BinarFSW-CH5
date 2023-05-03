@@ -1,6 +1,6 @@
 const express = require("express");
 const controllers = require("../app/controllers");
-const validator = require("../validation");
+const validator = require("../app/utils/validation");
 const apiRouter = express.Router();
 
 apiRouter.post("/api/v1/login", controllers.api.v1.authController.login);
@@ -18,7 +18,7 @@ apiRouter.get(
   controllers.api.v1.authController.authorize,
   controllers.api.v1.authController.whoAmI
 );
-apiRouter.get("/api/v1/allUser", controllers.api.v1.authController.getUser);
+apiRouter.get("/api/v1/alluser", controllers.api.v1.authController.getUser);
 
 // Cars
 apiRouter.get("/api/v1/cars", controllers.api.v1.carsController.listAvailable);
@@ -45,13 +45,11 @@ apiRouter.put(
 );
 apiRouter.get("/api/v1/cars/:id", controllers.api.v1.carsController.show);
 
-// search cars data by name or size
 apiRouter.get(
   "/api/v1/cars/search/:key",
   controllers.api.v1.carsController.search
 );
 
-// handle soft delete
 apiRouter.delete(
   "/api/v1/cars/:id",
   controllers.api.v1.authController.authorize,

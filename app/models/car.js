@@ -9,32 +9,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.User, {
-        foreignKey: 'createdBy',
-        as: 'creator',
-      })
+        foreignKey: "createdBy",
+        as: "creator",
+      });
 
       this.belongsTo(models.User, {
-        foreignKey: 'updatedBy',
-        as: 'updator',
-      })
+        foreignKey: "updatedBy",
+        as: "updator",
+      });
 
       this.belongsTo(models.User, {
-        foreignKey: 'deletedBy',
-        as: 'deletor'
-      })
+        foreignKey: "deletedBy",
+        as: "deletor",
+      });
     }
-  };
-
+  }
   Car.init(
     {
       name: DataTypes.STRING,
       price: DataTypes.INTEGER,
       size: DataTypes.STRING,
       image: DataTypes.STRING,
+      available: DataTypes.BOOLEAN,
       createdBy: DataTypes.INTEGER,
       updatedBy: DataTypes.INTEGER,
       deletedBy: DataTypes.INTEGER,
-      available: DataTypes.BOOLEAN,
     },
     {
       sequelize,

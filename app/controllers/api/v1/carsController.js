@@ -1,12 +1,12 @@
 const carsService = require("../../../services/carsService");
-const cloudinary = require("../../../../cloudinary");
+const cloudinary = require("../../../services/cloudinary");
 
 module.exports = {
   async list(req, res) {
     const isAdmin = await req.user.role;
 
     if (isAdmin === "member") {
-      res.status(401).json({ message: "Danger area, not user access zone" });
+      res.status(401).json({ message: "No access" });
       return;
     }
 
@@ -29,7 +29,7 @@ module.exports = {
 
   listAvailable(req, res) {
     carsService
-      .getAvilable()
+      .getAvailable()
       .then((cars) => {
         res.status(200).json({
           status: "OK",
@@ -81,11 +81,11 @@ module.exports = {
   },
 
   async create(req, res) {
-    const creator = await req.user.name;
+    const creator = await req.user.id;
     const isAdmin = await req.user.role;
 
     if (isAdmin === "member") {
-      res.status(401).json({ message: "Danger area, not user access zone" });
+      res.status(401).json({ message: "No access" });
       return;
     }
 
@@ -100,7 +100,7 @@ module.exports = {
         .create(body)
         .then((cars) => {
           res.status(201).json({
-            status: "Created",
+            status: "Created Success",
             data: cars,
           });
         })
@@ -137,7 +137,7 @@ module.exports = {
             .create(body)
             .then((cars) => {
               res.status(201).json({
-                status: "Created",
+                status: "Created Success",
                 data: cars,
               });
             })
@@ -157,7 +157,7 @@ module.exports = {
     const isAdmin = await req.user.role;
 
     if (isAdmin === "member") {
-      res.status(401).json({ message: "Danger area, not user access zone" });
+      res.status(401).json({ message: "No access" });
       return;
     }
 
@@ -171,7 +171,8 @@ module.exports = {
         .update(req.params.id, payload)
         .then(() => {
           res.status(200).json({
-            status: "OK",
+            status: "Update Success",
+            updatedBy: updator,
           });
         })
         .catch((err) => {
@@ -215,7 +216,8 @@ module.exports = {
             .update(req.params.id, payload)
             .then(() => {
               res.status(200).json({
-                status: "OK",
+                status: "Update Success",
+                updatedBy: updator,
               });
             })
             .catch((err) => {
@@ -234,7 +236,7 @@ module.exports = {
     const isAdmin = await req.user.role;
 
     if (isAdmin === "member") {
-      res.status(401).json({ message: "Danger area, not user access zone" });
+      res.status(401).json({ message: "No access" });
       return;
     }
 
@@ -244,9 +246,12 @@ module.exports = {
     };
 
     carsService
-      .update(req.params.id, payload)
+      .delete(req.params.id, payload)
       .then(() => {
-        res.status(204).end();
+        res.status(200).json({
+          message: "Delete Success",
+          deleteBy: deletor,
+        });
       })
       .catch((err) => {
         res.status(422).json({

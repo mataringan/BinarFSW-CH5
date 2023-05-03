@@ -1,8 +1,3 @@
-/**
- * @file contains authentication request handler and its business logic
- * @author Fikri Rahmat Nurhidayat
- */
-
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { User } = require("../../../models");
@@ -60,7 +55,6 @@ module.exports = {
   },
 
   async registerAdmin(req, res) {
-    const email = req.body.email;
     const encryptedPassword = await encryptPassword(req.body.password);
     const isAdmin = req.user.role;
 
@@ -88,7 +82,7 @@ module.exports = {
   },
 
   async login(req, res) {
-    const email = req.body.email; // Biar case insensitive
+    const email = req.body.email;
     const password = req.body.password;
 
     const user = await User.findOne({
