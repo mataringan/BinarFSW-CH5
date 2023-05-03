@@ -40,7 +40,7 @@ Data super admin untuk login
 
 ```json
 "email": "superadmin@gmail.com",
-"encryptedPassword": "adminsuper"
+"password": "adminsuper"
 ```
 
 API Document
