@@ -31,9 +31,28 @@ module.exports = (sequelize, DataTypes) => {
       size: DataTypes.STRING,
       image: DataTypes.STRING,
       available: DataTypes.BOOLEAN,
-      createdBy: DataTypes.INTEGER,
-      updatedBy: DataTypes.INTEGER,
-      deletedBy: DataTypes.INTEGER,
+      createdBy: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
+      updatedBy: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
+      deletedBy: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
     },
     {
       sequelize,
