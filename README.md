@@ -43,6 +43,12 @@ Data super admin untuk login
 "password": "adminsuper"
 ```
 
+
+ERD
+
+![image.png](ERD.png)
+
+
 API Document
 
 ```js
