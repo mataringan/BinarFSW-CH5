@@ -7,6 +7,8 @@ const openapi = require("../openapi.json");
 
 const app = express();
 
+app.use(cors());
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapi));
 
 /** Install request logger */
@@ -17,5 +19,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 /** Install Router */
 app.use(router);
-app.use(cors());
 module.exports = app;
